@@ -10,7 +10,7 @@ This repository contains just a simple proof-of-concept without overcomplication
 
 ### In a nutshell
 We want to show that it is impossible to completely block access to information in the modern world.<br>
-The main idea of the project is to prove that even if an international channel is choked down to just a few kbit/s, it is still entirely realistic to read news, use Telegram, and chat with AI right inside your terminal. This method remains viable as long as citizens on the inside and the outside world retain access to any national or corporate services. In this scenario, custom tunneling solutions on GitHub can carry your terminal's bytes across the border.
+The main idea of the project is to prove that even if an international channel is choked down to just `a few kbit/s`, it is still entirely realistic to read news, use Telegram, and chat with AI right inside your terminal. This method remains viable as long as citizens on the inside and the outside world retain access to any national or corporate services. In this scenario, custom tunneling solutions on GitHub can carry your terminal's bytes across the border.
 
 ### Did you mean SSH?
 Basically, yes. But we want to separate `TIO` (Terminal Interaction Object) from SSH, because the latter has become too deeply rooted in people's minds as the *only* possible terminal communication interface (`TIO`) between machines. It might surprise you, but a terminal session doesn't have to rely on SSH. SSH is merely one, albeit the most common, implementation.
