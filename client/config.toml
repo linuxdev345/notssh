@@ -1,0 +1,10 @@
+# Local UDP interface parameters between notssh and 1kbit-transport.
+[udp]
+# Address where notssh receives frames from the transport.
+read_addr = '127.0.0.1:42001'
+# Address where notssh sends frames to the transport.
+write_addr = '127.0.0.1:42002'
+# Maximum amount of terminal data in one notssh frame.
+max_payload = 64
+# Time without a received frame before the client restarts the handshake.
+connection_timeout_seconds = 20
