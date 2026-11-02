@@ -16,7 +16,7 @@ The main idea of the project is to prove that even if an international channel i
 Basically, yes. But we want to separate `TIO` (Terminal Interaction Object) from SSH, because the latter has become too deeply rooted in people's minds as the *only* possible terminal communication interface (`TIO`) between machines. It might surprise you, but a terminal session doesn't have to rely on SSH. SSH is merely one, albeit the most common, implementation.
 
 ### Why notssh (TIO) if there is SSH?
-In principle, regular SSH can also work; it only requires about 8 kbit/s. However, it relies on TCP and a persistent connection.<br>
+In principle, regular SSH can also work; it only requires about `8 kbit/s`. However, it relies on TCP and a persistent connection.<br>
 We want solutions to appear on GitHub that can maintain a terminal even when there is no persistent connection as such, and withstand network interruptions of any duration.
 
 ### Okay, but how can you read news, Telegram, and chat with AI on a few kbit/s?
