@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="100%" height="100%">
+  <defs>
+    <style>
+      :root {
+        --color-bg-purple: #18102d;
+        --color-bg-box: #0c0a1f;
+        --color-bg-status: #2b2142;
+        --color-accent-magenta: #ed5bd7;
+        --color-title: #ff8a4c;
+        --color-speed: #a78bfa;
+        --color-participant-me: #7ee787;
+        --color-participant-john: #e5c07b;
+        --color-participant-alex: #61afef;
+        --color-participant-dave: #c678dd;
+        --color-frame: #46c7c0;
+        --color-text-yellow: #ffd166;
+        --color-text-cyan: #72e2ef;
+        --color-text-green: #86efac;
+        --color-text-white: #f5f3ff;
+        --color-text-black: #10203a;
+        --color-status-text: #e9e4f5;
+      }
+
+      .bg-purple { fill: var(--color-bg-purple); }
+      .bg-box { fill: var(--color-bg-box); }
+      .bg-status { fill: var(--color-bg-status); }
+      .bg-cursor { fill: var(--color-text-green); }
+      
+      .text-pink { fill: var(--color-accent-magenta); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-title { fill: var(--color-title); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-speed { fill: var(--color-speed); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-participant-me { fill: var(--color-participant-me); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-participant-john { fill: var(--color-participant-john); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-participant-alex { fill: var(--color-participant-alex); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-participant-dave { fill: var(--color-participant-dave); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-yellow { fill: var(--color-text-yellow); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-cyan { fill: var(--color-text-cyan); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-green { fill: var(--color-text-green); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-white { fill: var(--color-text-white); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+      .text-black { fill: var(--color-status-text); font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; }
+    </style>
+  </defs>
+
+  <rect width="720" height="400" class="bg-purple" />
+
+  <rect x="15" y="15" width="690" height="335" class="bg-box" stroke="var(--color-frame)"
+    stroke-width="2" />
+
+  <text x="35" y="35" class="text-title">[notssh-client] Press ESC to disconnect from notssh-server</text>
+  <path d="M 17 45 L 703 45" stroke="var(--color-text-cyan)" stroke-width="1" />
+
+  <text x="35" y="65" class="text-cyan">
+    <tspan class="text-white">root@notssh-server:~# </tspan>
+    <tspan class="text-cyan"> tg-cli</tspan>
+    <tspan class="text-pink"> read-channel</tspan>
+    <tspan class="text-yellow"> @talks</tspan>
+  </text>
+  <text x="35" y="83" class="text-cyan">
+    <tspan class="text-cyan">[tg-cli]</tspan>
+    <tspan class="text-white"> Connected to Telegram. </tspan>
+    <tspan class="text-cyan">Server uplink: </tspan>
+    <tspan class="text-speed">233 Mbit/s</tspan>
+  </text>
+  <text x="35" y="113" class="text-yellow">========================================================</text>
+
+  <text x="35" y="140" class="text-participant-me">[me] <tspan class="text-white">Hi! Web is down,
+    using
+      notssh via email. Anyone here?</tspan></text>
+
+  <text x="35" y="175" class="text-participant-john">[john] <tspan class="text-white">Yeah. I am
+      here too — my
+      notssh is via simple HTTP API.</tspan></text>
+
+  <text x="35" y="210" class="text-participant-alex">[alex] <tspan class="text-white">Glad I opened
+    the
+      Telegram chat. Does anyone know the news?</tspan></text>
+
+  <text x="35" y="245" class="text-participant-dave">[dave] <tspan class="text-white">Yes. Found an
+    interesting
+      channel </tspan><tspan class="text-yellow">@news</tspan></text>
+
+  <text x="35" y="275" class="text-yellow">========================================================</text>
+
+  <text x="35" y="305" class="text-cyan">tg-cli&gt; <tspan class="text-pink">send</tspan><tspan
+      class="text-white"> Thanks, </tspan><tspan class="text-yellow">@dave</tspan><tspan
+      class="text-white">, I’ll take a look now!</tspan></text>
+  <rect x="420" y="293" width="8" height="14" class="bg-cursor" />
+
+  <rect x="15" y="355" width="690" height="30" class="bg-status" />
+  <text x="25" y="375" class="text-black">NotSSH-client via Email | Connected | Speed: <tspan
+      class="text-green">~1.6 kbit/s</tspan> | Ping: <tspan class="text-green">~9 sec</tspan></text>
+</svg>
