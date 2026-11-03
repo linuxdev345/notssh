@@ -142,7 +142,9 @@ chmod +x ./notssh-server
 ```
 
 > [!TIP]
-> After `Transport Connected` appears, press `Enter` to wake up the console.
+> After `Transport Connected` appears, press `Enter` to wake up the console.<br>
+> Press `CTRL + C` to exit.<br>
+> Press `CTRL + R` to restart connection.
 
 ### A few words about pull requests
 This project was created as a proof-of-concept (PoC) with no plans for ongoing maintenance.<br>
