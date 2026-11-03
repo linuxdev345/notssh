@@ -1,4 +1,4 @@
-### Internet Shutdown: How to read the news via Telegram and ChatGPT
+### Internet Shutdown: News, Telegram, ChatGPT
 
 ### One Picture
 
