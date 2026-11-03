@@ -1,4 +1,4 @@
-### Internet Shutdown: News, Telegram, ChatGPT
+### Internet Blackout: News, Telegram, ChatGPT
 
 ### One Picture
 
