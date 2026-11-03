@@ -1,4 +1,4 @@
-### Internet Shutdown: How we will read the news
+### Internet Shutdown: How we will read the news via Telegram and ChatGPT
 
 ### One Picture
 
