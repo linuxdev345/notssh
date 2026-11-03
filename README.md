@@ -148,6 +148,9 @@ chmod +x ./notssh-server
 This project was created as a proof-of-concept (PoC) with no plans for ongoing maintenance.<br>
 Feel free to fork and evolve your ideas in your own repositories!
 
+> [!TIP]
+> Feel free to share links to your related projects in the issues
+
 > ⚠️ **Disclaimer**<br>
 > The `notssh` project is distributed "AS IS" — without any warranties of stability, security, or fault tolerance.<br>
 > This is a demonstration protocol, not intended for use in critical infrastructure or production environments.<br>
