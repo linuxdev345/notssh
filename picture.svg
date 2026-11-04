@@ -87,6 +87,6 @@
   <rect x="420" y="293" width="8" height="14" class="bg-cursor" />
 
   <rect x="15" y="355" width="690" height="30" class="bg-status" />
-  <text x="25" y="375" class="text-black">NotSSH-client via Email | Connected | Speed: <tspan
+  <text x="25" y="375" class="text-black">notssh-client via email | Connected | Speed: <tspan
       class="text-green">~1.6 kbit/s</tspan> | Ping: <tspan class="text-green">~9 sec</tspan></text>
 </svg>
