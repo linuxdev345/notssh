@@ -5,8 +5,8 @@
 ![Internet Shutdown: How we will read the news](picture.svg)
 
 > [!WARNING]
-Unfortunately, the image above represents the target vision for the final project.<br>
-This repository contains just a simple proof-of-concept without overcomplication, ensuring the example runs for 99% of testers at `1 kbit/s.`
+> The image above represents **the target vision for the final project.**<br>
+This repository **contains just a simple proof-of-concept without overcomplication**, ensuring the example runs for 99% of testers at `1 kbit/s.`
 
 ### In a nutshell
 We want to show that it is impossible to completely block access to information in the modern world.<br>
