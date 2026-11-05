@@ -44,7 +44,7 @@ func main() {
 	}
 
 	log.Printf("[*] UDP boundary read=%s write=%s", cfg.UDP.ReadAddr, cfg.UDP.WriteAddr)
-	connected, sessionID := waitForClient(readUDP, writeUDP, maxPayload, maxDatagram)
+	connected, sessionID, cols, rows := waitForClient(readUDP, writeUDP, maxPayload, maxDatagram)
 	if !connected {
 		return
 	}
@@ -64,6 +64,9 @@ func main() {
 		_ = ptmx.Close()
 		_ = cmd.Process.Kill()
 	}()
+	if err := pty.Setsize(ptmx, &pty.Winsize{Cols: cols, Rows: rows}); err != nil {
+		log.Printf("set initial PTY size %dx%d: %v", cols, rows, err)
+	}
 
 	sendOutput := func(payload []byte) {
 		for len(payload) > 0 {
@@ -128,6 +131,13 @@ func main() {
 			}
 			lastHelloAckAt = time.Now()
 			_ = sendPacket(encodeFrame(maxPayload, loadSessionID(), kindHelloAck, nil))
+			if cols, rows, ok := decodeWindowSize(payload); ok {
+				if err := pty.Setsize(ptmx, &pty.Winsize{Cols: cols, Rows: rows}); err != nil {
+					log.Printf("set PTY size %dx%d: %v", cols, rows, err)
+				} else {
+					log.Printf("applied terminal size: %dx%d", cols, rows)
+				}
+			}
 		case kindInput:
 			if frameSession != loadSessionID() {
 				continue
@@ -145,10 +155,10 @@ func main() {
 	}
 }
 
-func waitForClient(readUDP, writeUDP *udpEndpoint, maxPayload, maxDatagram int) (bool, uint16) {
+func waitForClient(readUDP, writeUDP *udpEndpoint, maxPayload, maxDatagram int) (bool, uint16, uint16, uint16) {
 	packet := make([]byte, maxDatagram)
-	// The UDP relay is transparent: a read timeout means that no client hello
-	// arrived, but does not prove that the relay itself has stopped.
+	// The UDP relay is transparent: a read timeout means no client hello arrived,
+	// but does not prove that the relay itself stopped.
 	log.Println("Client not connected")
 	for {
 		_ = readUDP.conn.SetReadDeadline(time.Now().Add(time.Second))
@@ -159,9 +169,9 @@ func waitForClient(readUDP, writeUDP *udpEndpoint, maxPayload, maxDatagram int) 
 				continue
 			}
 			log.Printf("wait for client: %v", err)
-			return false, 0
+			return false, 0, 80, 24
 		}
-		sessionID, kind, _, ok := decodeFrame(maxPayload, packet[:n])
+		sessionID, kind, payload, ok := decodeFrame(maxPayload, packet[:n])
 		if !ok || sessionID == 0 || kind != kindHello {
 			continue
 		}
@@ -171,6 +181,13 @@ func waitForClient(readUDP, writeUDP *udpEndpoint, maxPayload, maxDatagram int) 
 		}
 		_ = readUDP.conn.SetReadDeadline(time.Time{})
 		log.Println("transport connected")
-		return true, sessionID
+		cols, rows, ok := decodeWindowSize(payload)
+		if !ok {
+			cols, rows = 80, 24
+			log.Printf("client hello has no valid terminal size; using %dx%d", cols, rows)
+		} else {
+			log.Printf("client terminal size: %dx%d", cols, rows)
+		}
+		return true, sessionID, cols, rows
 	}
 }
