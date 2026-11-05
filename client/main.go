@@ -1,4 +1,4 @@
-// notssh client.
+// notssh client
 package main
 
 import (
@@ -80,7 +80,8 @@ func main() {
 		return err
 	}
 	sendHello := func() error {
-		return sendPacket(encodeFrame(maxPayload, loadSessionID(), kindHello, nil))
+		cols, rows := terminalSize()
+		return sendPacket(encodeFrame(maxPayload, loadSessionID(), kindHello, encodeWindowSize(cols, rows)))
 	}
 	resetSession := func() {
 		newID, err := newSessionID()
@@ -184,7 +185,7 @@ func main() {
 			return
 		case data := <-inputCh:
 			if bytes.Contains(data, []byte{3}) {
-				// Send Ctrl-C to the remote PTY and terminate the client.
+				// Deliver Ctrl-C to the remote PTY, then terminate this client.
 				if connected.Load() {
 					if err := sendPacket(encodeFrame(maxPayload, loadSessionID(), kindInput, data)); err != nil {
 						log.Printf("send Ctrl-C: %v", err)
@@ -193,7 +194,7 @@ func main() {
 				return
 			}
 			if bytes.Contains(data, []byte{18}) {
-				// Ctrl-R resets the local session and must not reach the remote PTY.
+				// Ctrl-R is a local session reset and must not reach the remote PTY.
 				resetSession()
 				continue
 			}
@@ -211,10 +212,24 @@ func main() {
 	}
 }
 
+func terminalSize() (uint16, uint16) {
+	cols, rows, err := term.GetSize(int(os.Stdout.Fd()))
+	if err == nil && cols > 0 && rows > 0 {
+		if cols > 65535 {
+			cols = 65535
+		}
+		if rows > 65535 {
+			rows = 65535
+		}
+		return uint16(cols), uint16(rows)
+	}
+	return 80, 24
+}
+
 func restoreTerminal(fd int, state *term.State) {
 	_ = term.Restore(fd, state)
-	// Fallback for a terminal whose state was not restored after a debugger stop
-	// or a forced signal.
+	// Keep a fallback for terminals whose saved state cannot be restored
+	// after an external debugger stop or a forced signal.
 	stty := exec.Command("stty", "sane")
 	stty.Stdin = os.Stdin
 	stty.Stdout = os.Stdout
