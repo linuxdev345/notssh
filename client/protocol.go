@@ -34,6 +34,13 @@ func decodeFrame(maxPayload int, packet []byte) (uint16, byte, []byte, bool) {
 	return binary.BigEndian.Uint16(packet[1:3]), packet[0], packet[headerSize:], true
 }
 
+func encodeWindowSize(cols, rows uint16) []byte {
+	payload := make([]byte, 4)
+	binary.BigEndian.PutUint16(payload[0:2], cols)
+	binary.BigEndian.PutUint16(payload[2:4], rows)
+	return payload
+}
+
 func newSessionID() (uint16, error) {
 	var data [2]byte
 	if _, err := cryptorand.Read(data[:]); err != nil {
