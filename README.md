@@ -126,19 +126,18 @@ cd 1kbit-transport
 chmod +x ./1kbit-transport
 ./1kbit-transport
 ```
-
-9. Run `notssh-client` in the second tab **on the client**:
-```bash
-cd notssh/client
-chmod +x ./notssh-client
-./notssh-client
-```
-
-10. Run `notssh-server` in the second tab **on the server:**
+9. Run `notssh-server` in the second tab **on the server:**
 ```bash
 cd notssh/server
 chmod +x ./notssh-server
 ./notssh-server
+```
+
+10. Run `notssh-client` in the second tab **on the client**:
+```bash
+cd notssh/client
+chmod +x ./notssh-client
+./notssh-client
 ```
 
 > [!TIP]
