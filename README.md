@@ -8,7 +8,7 @@
 > The image above represents **the target vision for the final project.**<br>
 This repository **contains just a simple proof-of-concept without overcomplication**, ensuring the example runs for 99% of testers at `1 kbit/s.`
 
-### In a nutshell
+### In short
 We want to show that it is impossible to completely block access to information in the modern world.<br>
 The main idea of the project is to prove that even if an international channel is choked down to just `a few kbit/s`, it is still entirely realistic to read news, use Telegram, and chat with AI right inside your terminal. This method remains viable as long as citizens on the inside and the outside world retain access to any national or corporate services. In this scenario, custom tunneling solutions on GitHub can carry your terminal's bytes across the border.
 
@@ -23,8 +23,8 @@ We want solutions to appear on GitHub that can maintain a terminal even when the
 Of course, this is impossible within the traditional paradigms of the modern internet.
 However, we can change the approach. Raw textual information only takes up bytes. Everything else is just wrapper bloat.
 
-### Can you elaborate?
-For example, Telegram channels can be represented as:
+### Can you give an example?
+Telegram channels can be represented as:
 ```bash
 # This translates to reading the last 10 posts in the weather forecast channel
 tg-cli read-channel @weather -p 10
@@ -59,7 +59,7 @@ You might not need this right now, but it's worth preparing for scenarios like t
 > [!NOTE]
 > At the core of the notssh server lies the idea of a PTY. Simply put, the computer believes that the notssh-server program is a real keyboard and screen.
 
-### Why this separation?
+### Why this architecture?
 1) `notssh` is the core engine. Its purpose is to provide `TIO` (Terminal Interaction Object) between machines while delivering a user experience similar to SSH.<br>
 However, the core itself doesn't know how or through what channel the traffic will flow, and it cannot account for transport-specific characteristics.<br>
 It simply takes in and outputs bytes via UDP sockets on `localhost`.<br>
