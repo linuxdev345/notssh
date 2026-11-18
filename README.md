@@ -24,13 +24,13 @@ Of course, this is impossible within the traditional paradigms of the modern int
 However, we can change the approach. Raw textual information only takes up bytes. Everything else is just wrapper bloat.
 
 ### Can you give an example?
-Telegram channels can be represented as:
+- Telegram channels can be represented as:
 ```bash
 # This translates to reading the last 10 posts in the weather forecast channel
 tg-cli read-channel @weather -p 10
 ```
 
-Chatting with an AI can look like this:
+- Chatting with an AI can look like this:
 ```bash
 chatgpt-cli ask What is the weather today?
 ```
