@@ -60,20 +60,19 @@ You might not need this right now, but it's worth preparing for scenarios like t
 > At the core of the notssh server lies the idea of a PTY. Simply put, the computer believes that the notssh-server program is a real keyboard and screen.
 
 ### Why this separation?
-- 1) `notssh` is the core engine. Its purpose is to provide `TIO` (Terminal Interaction Object) between machines while delivering a user experience similar to SSH.<br>
+1) `notssh` is the core engine. Its purpose is to provide `TIO` (Terminal Interaction Object) between machines while delivering a user experience similar to SSH.<br>
 However, the core itself doesn't know how or through what channel the traffic will flow, and it cannot account for transport-specific characteristics.<br>
 It simply takes in and outputs bytes via UDP sockets on `localhost`.<br>
 This is the simplest possible implementation of IPC (Inter-Process Communication) between programs.
 
-- 2) `1kbit-transport` is a reference transport implementation. In this specific case, it's a UDP relay that paces bytes to enforce a strict `1 kbit/s` limit. Its goal is to demonstrate that `TIO` doesn't have to rely on SSH!
+2) `1kbit-transport` is a reference transport implementation. In this specific case, it's a UDP relay that paces bytes to enforce a strict `1 kbit/s` limit. Its goal is to demonstrate that `TIO` doesn't have to rely on SSH!
 
-- 3) Essentially, the core supports any `*-transport` project. Today it's a pedagogical 1kbit implementation, tomorrow it could be a tunnel over email, chat, video, and so on.
+3) Essentially, the core supports any `*-transport` project. Today it's a pedagogical 1kbit implementation, tomorrow it could be a tunnel over email, chat, video, and so on.
 
 ### How to run
-
-> [!NOTE]
+> [!IMPORTANT]
 > This guide assumes that all machines are running Linux.<br>
-> Other operating systems have not been tested.
+> Make sure you are using **the latest version of Go**.
 
 1. Open two console windows on both the client and the server.
 
