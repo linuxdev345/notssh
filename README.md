@@ -145,6 +145,10 @@ chmod +x ./notssh-client
 > Press `CTRL + C` to exit.<br>
 > Press `CTRL + R` to restart connection.
 
+> [!IMPORTANT]
+> **The code is unstable**.<br>
+> If a `Ctrl+R` restart fails to restore the connection, restart the Go programs in this order: `1kbit-transport -> notssh`.
+
 ### A few words about pull requests
 This project was created as a proof-of-concept (PoC) with no plans for ongoing maintenance.<br>
 Feel free to fork and evolve your ideas in your own repositories!
