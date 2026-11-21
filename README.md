@@ -39,7 +39,8 @@ More advanced interfaces, such as ANSI sequences and terminal pseudo-graphics, a
 It seems it's time to remember those technologies.
 
 ### Who on earth would read news through a terminal?
-You might not need this right now, but it's worth preparing for scenarios like those seen in Iran.
+You might not need this right now, but it's worth preparing for scenarios like those seen in Iran.<br>
+Better yet, you don't even have to show everyday users a console: the `notssh` client engine can easily be embedded into a familiar Android app that parses incoming *stdout* on the fly and turns it into a recognizable interface—from a news feed to a Telegram-style messenger.
 
 ### How it works
 
