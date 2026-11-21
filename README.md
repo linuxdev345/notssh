@@ -10,7 +10,7 @@ This repository **contains just a simple proof-of-concept without overcomplicati
 
 ### In short
 We want to show that it is impossible to completely block access to information in the modern world.<br>
-The main idea of the project is to prove that even if an international channel is choked down to just `a few kbit/s`, it is still entirely realistic to read news, use Telegram, and chat with AI right inside your terminal. This method remains viable as long as citizens on the inside and the outside world retain access to any national or corporate services. In this scenario, custom tunneling solutions on GitHub can carry your terminal's bytes across the border.
+The main idea of the project is to prove that even if an international channel is choked down to just `a few kbit/s`, it is still entirely realistic to read news, use Telegram, and chat with AI right inside your terminal. This method remains viable as long as citizens on the inside and the outside world retain access to any local, national or corporate services.
 
 ### Did you mean SSH?
 Basically, yes. But we want to separate `TIO` (Terminal Interaction Object) from SSH, because the latter has become too deeply rooted in people's minds as the *only* possible terminal communication interface (`TIO`) between machines. It might surprise you, but a terminal session doesn't have to rely on SSH. SSH is merely one, albeit the most common, implementation.
@@ -43,10 +43,9 @@ You might not need this right now, but it's worth preparing for scenarios like t
 Better yet, you don't even have to show everyday users a console: the `notssh` client engine can easily be embedded into a familiar Android app that parses incoming *stdout* on the fly and turns it into a recognizable interface—from a news feed to a Telegram-style messenger.
 
 ### How it works
-
-> [!NOTE]
-> The `notssh` client sits on a near-dead channel, while the `notssh-server` is hosted abroad, where you can host CLI versions of all the best tools.<br>
-> The bridge between them is implemented using custom tunneling solutions found on GitHub.
+1) The `notssh` client sits on a near-dead channel, while the `notssh-server` is hosted abroad, where you can host CLI versions of all the best tools.
+2) At the core of the `notssh` server lies the idea of a PTY. Simply put, the computer believes that the notssh-server program is a real keyboard and screen.
+3) Custom async-bridge — any ultra-low-bandwidth asynchronous bridge that works without a persistent connection and carries data across the border using local, national, or corporate services.
 
 ```bash
 +---------------+           +------------------+                             +------------------+           +---------------+
@@ -57,9 +56,6 @@ Better yet, you don't even have to show everyday users a console: the `notssh` c
 +---------------+           +------------------+                             +------------------+           +---------------+
 ```
 
-> [!NOTE]
-> At the core of the notssh server lies the idea of a PTY. Simply put, the computer believes that the notssh-server program is a real keyboard and screen.
-
 ### Why this architecture?
 1) `notssh` is the core engine. Its purpose is to provide `TIO` (Terminal Interaction Object) between machines while delivering a user experience similar to SSH.<br>
 However, the core itself doesn't know how or through what channel the traffic will flow, and it cannot account for transport-specific characteristics.<br>
@@ -68,7 +64,7 @@ This is the simplest possible implementation of IPC (Inter-Process Communication
 
 2) `1kbit-transport` is a reference transport implementation. In this specific case, it's a UDP relay that paces bytes to enforce a strict `1 kbit/s` limit. Its goal is to demonstrate that `TIO` doesn't have to rely on SSH!
 
-3) Essentially, the core supports any `*-transport` project. Today it's a pedagogical 1kbit implementation, tomorrow it could be a tunnel over email, chat, video, and so on.
+3) Essentially, the core supports any `*-transport` project. Today it's a pedagogical `1kbit` implementation, tomorrow it could be a tunnel over email, chat, video, and so on.
 
 ### How to run
 > [!IMPORTANT]
