@@ -82,14 +82,16 @@ git clone https://github.com/linuxdev345/notssh
 git clone https://github.com/linuxdev345/1kbit-transport
 ```
 
+> [!CAUTION]
+Remove `notssh/client` directory on the **server** machine<br>
+Remove `notssh/server` directory on the **client** machine
+
 3. Edit `1kbit-transport` on both the client and the server. Open `config.toml` and update the parameters to match your configuration.
 4. Edit `notssh` on both the client and the server. Open `config.toml` and update the parameters to match your configuration.
 
 5. Build the client core:
 ```bash
-cd notssh
-rm -r server
-cd client
+cd notssh/client
 go mod init client
 go mod tidy
 go build -o notssh-client .
@@ -97,9 +99,7 @@ go build -o notssh-client .
 
 6. Build the server core:
 ```bash
-cd notssh
-rm -r client
-cd server
+cd notssh/server
 go mod init server
 go mod tidy
 go build -o notssh-server .
